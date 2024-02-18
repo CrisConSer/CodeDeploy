@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Test"]
+    workflows: ["Java CI with Gradle"]
     types:
       - completed
 
@@ -30,4 +30,11 @@ jobs:
 
     - name: Build and deploy with Gradle
       run: ./gradlew build
+    
+    - name: Set SHA variable
+      run: echo "SHA=${{github.sha}}">>$GITHUB_ENV
+
+    - name: Display Github Sha
+      run: echo 5648b98931cc649732467ed5aebe51c0dcc1491b
+
         
